@@ -25,7 +25,7 @@ namespace ConsoleClient
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Get, HelloWorldFunctionUri);
+                    var request = new HttpRequestMessage(HttpMethod.Get, LocalHelloWorldFunctionUri);
                     request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authenticationResult.IdToken);
 
                     HttpResponseMessage response = client.SendAsync(request).Result;

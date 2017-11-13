@@ -20,6 +20,11 @@ namespace AzureFunctions
 
     // For local development, you'll need to have node.js runtime installed, as well as the Azure Functions runtime
     // npm install -g azure-functions-core-tools
+
+    // Credit for much of the code in the Security class goes to this blog post by Boris Wilhelms:
+    // https://blog.wille-zone.de/post/secure-azure-functions-with-jwt-token/
+    // Modifications by me to correctly authorize the MSA account programmatically. 
+
     public static class Security
     {
         public static readonly IConfigurationManager<OpenIdConnectConfiguration> _configurationManager;
@@ -99,6 +104,8 @@ namespace AzureFunctions
             else
             {
                 var username = principal.Claims.FirstOrDefault(c => c.Type == "preferred_username");
+
+                // Of course this is not scalable, but the goal is to demonstrate programmatic access.
                 if (username.Value == "jlam@iunknown.com")
                 {
                     return req.CreateResponse(HttpStatusCode.OK, "Hello, World!");
