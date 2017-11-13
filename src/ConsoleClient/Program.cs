@@ -13,7 +13,7 @@ namespace ConsoleClient
         private static string ApplicationId = "23350dde-6e5a-40d4-b200-fce496fd6045";
 
         // TODO: get URI after deployment
-        private static string HelloWorldFunctionUri = "";
+        private static string HelloWorldFunctionUri = "https://jlam-todo-functions.azurewebsites.net/api/HelloWorld?code=3ecR2bqAGHCnjPE0okbJoKcE42sjnqbsJzDpaQNcz6Gyo6pf1aA/aA==";
         private static string LocalHelloWorldFunctionUri = "http://localhost:7071/api/HelloWorld";
 
         static async Task AuthenticateAndCallAzureFunction()
@@ -25,7 +25,7 @@ namespace ConsoleClient
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Get, LocalHelloWorldFunctionUri);
+                    var request = new HttpRequestMessage(HttpMethod.Get, HelloWorldFunctionUri);
                     request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authenticationResult.IdToken);
 
                     HttpResponseMessage response = client.SendAsync(request).Result;
