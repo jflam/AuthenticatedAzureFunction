@@ -1,23 +1,25 @@
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AzureFunctions
 {
     // This requires the JwtBearer authentication nuget package:
     // Install-Package Microsoft.AspNetCore.Authentication.JwtBearer -Version 2.0.0
 
+    // For local development, you'll need to have node.js runtime installed, as well as the Azure Functions runtime
+    // npm install -g azure-functions-core-tools
     public static class Security
     {
         public static readonly IConfigurationManager<OpenIdConnectConfiguration> _configurationManager;
